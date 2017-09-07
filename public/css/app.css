@@ -16,7 +16,7 @@ div {
 }
 
 #view-change-button {
-  display: inline-block;
+  display: none;
   position: absolute;
   width: 3.125rem;
   height: 3.125rem;
@@ -253,6 +253,7 @@ input:-moz-placeholder {
   background-color: #23292A;
   color: #fff;
   overflow-x: auto;
+  display: none;
 
   width: 45%;
   max-width: 32.0625rem;
