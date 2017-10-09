@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container\">\n<div style=\"text-align:center\">\n  <h1>{{title}}</h1>\n  <!--<img width=\"30\" src=\"data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=\">-->\n</div>\n<div class=\"jumbotron text-center\">\n  <form (submit)=\"onSubmit()\">\n  <div class=\"form-group\">\n    <label>What are your interests?</label>\n    <input type=\"text\" [(ngModel)]=\"budget\" name=\"budget\" class=\"form-control\">\n  </div>\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\n</form>\n<p></p>\n<p></p>\n<div class=\"test-tomche\" *ngFor=\"let schedule of schedules\" ></div>\n<agm-map [latitude]=55.9533 [longitude]=-3.1883>\n  <agm-marker [latitude]=55.9533 [longitude]=-3.1883></agm-marker>\n<agm-marker [latitude]=0 [longitude]=0></agm-marker>\n  <agm-marker *ngFor=\"let schedule of schedules\" [latitude]=\"schedule.lat\" [longitude]=\"schedule.lng\"></agm-marker>\n  <!--<script>\n    // schedules.forEach(function(current_value) {\n    //   var keys = Object.keys(current_value);\n    //   for(var i=0;i<keys.length;i++){\n    //     var key = keys[i];\n    //     if (key == 'schedules'){\n    //       //console.log(current_value[key][0].place.lat);\n    //       document.body.innerHTML = \"<agm-marker [latitude]=\" +current_value[key][0].place.lat+ \"[longitude]=\"+current_value[key][0].place.lng+\"></agm-marker>\"\n    //     }\n    //   }\n    // });\n    schedules.forEach(function(current_value) {\n    console.log('Testing object')\n    console.log(current_value[lat],current_value[lng]);\n    document.body.innerHTML = \"<agm-marker [latitude]=\" +current_value[lat]+ \"[longitude]=\"+current_value[lng]+\"></agm-marker>\"\n    //a b c\n    });\n  </script>-->\n</agm-map>\n\n</div>\n</div>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container\">\n\n<div class=\"jumbotron text-center\">\n  <div style=\"text-align:center\">\n    <h1>{{title}}</h1>\n    <!--<img width=\"30\" src=\"data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=\">-->\n  </div>\n\n  <form (submit)=\"onSubmit()\">\n  <div class=\"form-group\">\n    <label>What are your interests?</label>\n    <input type=\"text\" [(ngModel)]=\"budget\" name=\"budget\" class=\"form-control\">\n  </div>\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\n</form>\n<p></p>\n<p></p>\n<!--<router-outlet></router-outlet>-->\n<app-mapcomponent [locs]=\"schedules\"></app-mapcomponent>\n\n</div>\n</div>\n"
 
 /***/ }),
 
@@ -51,6 +51,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_commservice_service__ = __webpack_require__("../../../../../src/app/services/commservice.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63,16 +64,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AppComponent = (function () {
-    function AppComponent(commserviceService) {
+    function AppComponent(router, commserviceService) {
+        this.router = router;
         this.commserviceService = commserviceService;
         this.title = 'Discover Edinburgh!';
         this.lat = 51.678418;
         this.lng = 7.809007;
-        //schedules: any =  [{lat:23,lng:36},{lat:43,lng:76},{lat:13,lng:56}];
-        this.schedules = [];
     }
     AppComponent.prototype.ngOnInit = function () {
+        //this.router.navigate(['map']);
     };
     AppComponent.prototype.onSubmit = function () {
         var _this = this;
@@ -99,8 +101,8 @@ var AppComponent = (function () {
                     if (key == 'schedules') {
                         console.log(current_value[key][0].place.lat);
                         arr.push({
-                            lat: current_value[key][0].place.lat //,
-                            //lng: current_value[key][0].place.lng
+                            lat: current_value[key][0].place.lat,
+                            lng: current_value[key][0].place.lng
                         });
                     }
                 }
@@ -122,21 +124,22 @@ var AppComponent = (function () {
             //console.log(arr);
             _this.schedules = arr;
             console.log(_this.schedules);
-            _this.ngOnInit();
+            //this.ngOnInit();
+            //this.router.navigate(['map']);
         });
     };
     return AppComponent;
 }());
 AppComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_commservice_service__["a" /* CommserviceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_commservice_service__["a" /* CommserviceService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_commservice_service__["a" /* CommserviceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_commservice_service__["a" /* CommserviceService */]) === "function" && _b || Object])
 ], AppComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -151,8 +154,10 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_commservice_service__ = __webpack_require__("../../../../../src/app/services/commservice.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__agm_core__ = __webpack_require__("../../../../@agm/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_mapcomponent_mapcomponent_component__ = __webpack_require__("../../../../../src/app/components/mapcomponent/mapcomponent.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -166,30 +171,104 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+var appRoutes = [
+    { path: 'map', component: __WEBPACK_IMPORTED_MODULE_8__components_mapcomponent_mapcomponent_component__["a" /* MapcomponentComponent */] }
+];
 var AppModule = (function () {
     function AppModule() {
     }
     return AppModule;
 }());
 AppModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["M" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]
+            __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__components_mapcomponent_mapcomponent_component__["a" /* MapcomponentComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* RouterModule */].forRoot(appRoutes),
             __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_6__agm_core__["a" /* AgmCoreModule */].forRoot({
+            __WEBPACK_IMPORTED_MODULE_7__agm_core__["a" /* AgmCoreModule */].forRoot({
                 apiKey: 'AIzaSyAqnwMbodqpzWtOL6Z_WOGkzn45uMfwOII'
             })
         ],
         providers: [__WEBPACK_IMPORTED_MODULE_4__services_commservice_service__["a" /* CommserviceService */]],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
 //# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/mapcomponent/mapcomponent.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/mapcomponent/mapcomponent.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<agm-map [latitude]=55.9533 [longitude]=-3.1883>\n  <agm-marker [latitude]=55.9533 [longitude]=-3.1883></agm-marker>\n<agm-marker [latitude]=0 [longitude]=0></agm-marker>\n  <agm-marker *ngFor=\"let schedule of locs\" [latitude]=\"schedule.lat\" [longitude]=\"schedule.lng\"></agm-marker>\n  <!--<script>\n    // schedules.forEach(function(current_value) {\n    //   var keys = Object.keys(current_value);\n    //   for(var i=0;i<keys.length;i++){\n    //     var key = keys[i];\n    //     if (key == 'schedules'){\n    //       //console.log(current_value[key][0].place.lat);\n    //       document.body.innerHTML = \"<agm-marker [latitude]=\" +current_value[key][0].place.lat+ \"[longitude]=\"+current_value[key][0].place.lng+\"></agm-marker>\"\n    //     }\n    //   }\n    // });\n    schedules.forEach(function(current_value) {\n    console.log('Testing object')\n    console.log(current_value[lat],current_value[lng]);\n    document.body.innerHTML = \"<agm-marker [latitude]=\" +current_value[lat]+ \"[longitude]=\"+current_value[lng]+\"></agm-marker>\"\n    //a b c\n    });\n  </script>-->\n</agm-map>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/mapcomponent/mapcomponent.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapcomponentComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MapcomponentComponent = (function () {
+    function MapcomponentComponent() {
+    }
+    MapcomponentComponent.prototype.ngOnInit = function () {
+        console.log('map loaded....');
+        console.log(this.locs);
+    };
+    return MapcomponentComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], MapcomponentComponent.prototype, "locs", void 0);
+MapcomponentComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-mapcomponent',
+        template: __webpack_require__("../../../../../src/app/components/mapcomponent/mapcomponent.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/mapcomponent/mapcomponent.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], MapcomponentComponent);
+
+//# sourceMappingURL=mapcomponent.component.js.map
 
 /***/ }),
 
@@ -245,7 +324,7 @@ var CommserviceService = (function () {
     return CommserviceService;
 }());
 CommserviceService = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
 ], CommserviceService);
 
@@ -285,7 +364,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_21" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_24" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });
