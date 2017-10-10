@@ -226,7 +226,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/mapcomponent/mapcomponent.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<agm-map [latitude]=55.9533 [longitude]=-3.1883>\n  <agm-marker [latitude]=55.9533 [longitude]=-3.1883></agm-marker>\n<agm-marker [latitude]=0 [longitude]=0></agm-marker>\n  <agm-marker *ngFor=\"let schedule of locs\" [latitude]=\"schedule.lat\" [longitude]=\"schedule.lng\"></agm-marker>\n  <!--<script>\n    // schedules.forEach(function(current_value) {\n    //   var keys = Object.keys(current_value);\n    //   for(var i=0;i<keys.length;i++){\n    //     var key = keys[i];\n    //     if (key == 'schedules'){\n    //       //console.log(current_value[key][0].place.lat);\n    //       document.body.innerHTML = \"<agm-marker [latitude]=\" +current_value[key][0].place.lat+ \"[longitude]=\"+current_value[key][0].place.lng+\"></agm-marker>\"\n    //     }\n    //   }\n    // });\n    schedules.forEach(function(current_value) {\n    console.log('Testing object')\n    console.log(current_value[lat],current_value[lng]);\n    document.body.innerHTML = \"<agm-marker [latitude]=\" +current_value[lat]+ \"[longitude]=\"+current_value[lng]+\"></agm-marker>\"\n    //a b c\n    });\n  </script>-->\n</agm-map>\n"
+module.exports = "<agm-map [latitude]=55.9533 [longitude]=-3.1883>\n  <agm-marker *ngFor=\"let schedule of locs\" [latitude]=\"schedule.lat\" [longitude]=\"schedule.lng\"></agm-marker>\n</agm-map>\n"
 
 /***/ }),
 
